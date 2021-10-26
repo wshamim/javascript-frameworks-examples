@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Javascript TODO App</title>
+    </head>
+    <body>
+        <ul id="todos">
+           <li>Example List Item</li>
+        </ul>
+
+        <form>
+            <input name="todo" type="text">
+            <input type="submit" value="Add Todo">
+        </form>
+
+        <script>
+            // https://www.w3schools.com/js/js_htmldom_document.asp
+            var form = document.getElementsByTagName('form')[0]; 
+            var inputEl = document.getElementsByName('todo')[0];
+            var todoListEl = document.getElementById('todos');
+
+            var todoData = [];
+
+            function addTodo(todoText) {
+                todoData.push(todoText);
+                
+                // Creating a new Element for the list
+                var liElement = document.createElement('li');
+                liElement.innerHTML = todoText;
+
+                // Appending the element to the todoList
+                todoListEl.appendChild(liElement);
+
+                inputEl.value = '';
+            }
+
+            form.onsubmit = function(event) {
+                event.preventDefault();
+                addTodo(inputEl.value);
+            }
+        </script>
+    </body>
+</html>
